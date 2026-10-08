@@ -29,7 +29,7 @@ header{text-align:center}
 .logo{width:150px;height:150px;display:block;margin:6px auto 10px}
 h1,h2{font-family:"Permanent Marker",Poppins,system-ui,sans-serif;font-weight:400;color:var(--deep);letter-spacing:.5px;line-height:1.1}
 h1{font-size:40px}
-h2{font-size:28px;text-align:center}
+h2{font-size:clamp(19px,6.2vw,28px);text-align:center;white-space:nowrap}
 .under{width:150px;height:6px;border-radius:3px;background:var(--yel);margin:8px auto 10px}
 .sub{font-weight:600;font-size:16px;color:var(--card)}
 .updated{font-size:13px;color:var(--foot);margin-top:4px;font-weight:600}
@@ -48,17 +48,25 @@ section{margin-top:34px}
 .tile .v{font-weight:700;font-size:36px;line-height:1.1}
 .tile .k{font-weight:700;font-size:13px;color:var(--lav);letter-spacing:.4px}
 /* Tabela de sobreviventes */
-.row{display:grid;grid-template-columns:1.1fr 1fr auto;align-items:center;gap:8px;padding:11px 12px;border-radius:8px;font-weight:700;font-size:17px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;align-items:center;gap:7px;padding:9px 9px 9px 11px;border-radius:8px;font-weight:700;font-size:clamp(12.5px,3.8vw,15px);line-height:1.3}
+.row .e,.row .e small,.row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row:nth-child(odd){background:var(--alt)}
 .row .e{color:#F0EAFF}
-.row .e small{display:block;font-weight:400;font-size:12px;color:var(--lav);opacity:.85}
-.row .t{color:#fff;border-left:1px solid #BEB4D2;padding-left:10px}
-.pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.row .e small{display:block;font-weight:400;font-size:.74em;color:var(--lav);opacity:.85}
+.row .t{color:#fff;border-left:1px solid #BEB4D2;padding-left:8px;min-width:0}
+.pill{font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:999px;white-space:nowrap}
 .pill.vivo{background:var(--yel);color:var(--deep)}
-.pill.elim{background:transparent;color:var(--red);border:1px solid var(--red)}
+.pill.elim{background:transparent;color:var(--red);border:1px solid var(--red);padding:2px 6px}
+.tags{display:flex;gap:4px;justify-content:flex-end}
+.pill.rd.dead{color:var(--red);border-color:var(--red)}
+.pill.rd{background:transparent;color:var(--lav);border:1px solid var(--lav);padding:2px 5px}
+.pill.rd.up{padding:3px 6px;border:0;background:var(--green);border-color:var(--green);color:#14532D}
+.group.first{padding-top:6px}
 .row.out{opacity:.55}
 .row.out .t{text-decoration:line-through;text-decoration-color:var(--red)}
-.thead{display:grid;grid-template-columns:1.1fr 1fr auto;gap:8px;padding:4px 12px 8px;font-size:12px;font-weight:700;color:var(--lav)}
+.thead{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;gap:7px;padding:4px 9px 8px 11px;font-size:clamp(12.5px,3.8vw,15px);font-weight:700;color:var(--lav)}
+.thead span{font-size:.8em}
+@media (max-width:375px){main{padding-left:10px;padding-right:10px}.box{padding:8px 4px}}
 .group{font-size:13px;font-weight:700;color:var(--lav);padding:14px 12px 6px}
 /* Preferência */
 .bar{padding:10px 14px}
@@ -69,13 +77,16 @@ section{margin-top:34px}
 .fill{height:100%;border-radius:6px;background:var(--yel)}
 /* Secadores */
 .day{font-weight:700;font-size:15px;color:var(--card);margin:18px 4px 8px}
-.game{background:var(--card);border-radius:14px;color:#fff;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:14px;margin-bottom:8px}
-.game .h{font-weight:700;font-size:20px;color:var(--yel)}
-.game .m{font-size:16px;color:var(--lav);font-weight:600}
+.game{background:var(--card);border-radius:14px;color:#fff;display:grid;grid-template-columns:1fr auto;grid-template-areas:'h b' 'm m';align-items:center;row-gap:8px;padding:12px 14px 13px;margin-bottom:8px}
+.game .h{grid-area:h}.game .badge{grid-area:b}
+.game .m{grid-area:m;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.game .h{font-weight:700;font-size:19px;color:var(--yel);line-height:1}
+.game .m{font-size:17px;color:var(--lav);font-weight:600}
 .game .m b{color:#fff}
-.game .r{display:block;font-size:12px;font-weight:700;margin-top:2px}
+.game .sc{display:inline-block;background:#fff;color:var(--deep);font-weight:700;font-size:15px;padding:1px 9px;border-radius:6px;margin:0 4px}
+.game .r{display:block;font-size:13px;font-weight:700;margin-top:3px}
 .r.ok{color:var(--green)}.r.bad{color:var(--red)}
-.badge{background:var(--yel);color:var(--deep);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.badge{background:var(--yel);color:var(--deep);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;white-space:nowrap}
 .note{font-size:13px;color:var(--foot);text-align:center;margin-top:10px;font-weight:600}
 footer{text-align:center;font-size:13px;color:var(--foot);margin-top:36px;font-weight:600}
 .err{background:#FFE4E4;color:#8A1C1C;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:16px;font-weight:600}
@@ -108,7 +119,8 @@ function parseCSV(txt){
 }
 const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const brl=v=>"R$ "+v.toLocaleString("pt-BR");
-const short=t=>t==="Red Bull Bragantino"?"Bragantino":t;
+const SHORT={"Red Bull Bragantino":"Bragantino","Internacional":"Inter"};
+const short=t=>SHORT[t]||t;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function kickoff(s){const m=s.match(/(\d{1,2})\/(\d{1,2})\s+(\d{1,2})h(\d{2})?/);return m?new Date(ANO,+m[2]-1,+m[1],+m[3],+(m[4]||0)):null}
 const DIAS=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
@@ -135,10 +147,12 @@ function render({P,J,demo}){
   const entries=P.map(p=>{
     let elimR=null,elimT=null;
     for(const r of rodadas){const t=pick(p,r);const x=res[r]?.[t];if(t&&(x==="Empatou"||x==="Perdeu")){elimR=r;elimT=t;break}}
-    return {...p,vivo:p.Status!=="Eliminado",elimR,elimT};
+    let reach=rodadas[0];
+    for(const r of rodadas){const t=pick(p,r);if(t&&res[r]?.[t]==="Venceu")reach=r+1;else{reach=r;break}}
+    return {...p,vivo:p.Status!=="Eliminado",elimR,elimT,reach};
   });
   const cmp=(a,b)=>norm(a.Entrada).localeCompare(norm(b.Entrada),"pt-BR",{numeric:true});
-  const vivos=entries.filter(e=>e.vivo).sort(cmp), mortos=entries.filter(e=>!e.vivo).sort((a,b)=>(b.elimR-a.elimR)||cmp(a,b));
+  const vivos=entries.filter(e=>e.vivo).sort((a,b)=>(b.reach-a.reach)||cmp(a,b)), mortos=entries.filter(e=>!e.vivo).sort((a,b)=>(b.elimR-a.elimR)||cmp(a,b));
   const jogadores=new Set(entries.map(e=>e.Participante)).size;
 
   document.getElementById("titulo").textContent="Rodada "+atual;
@@ -148,7 +162,9 @@ function render({P,J,demo}){
   const showPick=visivel(atual);
   const linha=(e,out)=>{
     const t=out?e.elimT:(showPick?pick(e,atual):"");
-    const tag=out?`<span class="pill elim">Caiu na R${e.elimR??"?"}</span>`:`<span class="pill vivo">Vivo</span>`;
+    const adv=!out&&e.reach>atual;
+    const tag=out?`<span class="tags"><span class="pill elim">Eliminado</span><span class="pill rd dead">R${e.elimR??"?"}</span></span>`
+      :`<span class="tags"><span class="pill vivo">Vivo</span><span class="pill rd${adv?" up":""}">R${e.reach}</span></span>`;
     return `<div class="row${out?" out":""}"><div class="e">${esc(e.Entrada)}<small>${esc(e.Participante)}</small></div><div class="t">${esc(t?short(t):"—")}</div>${tag}</div>`};
 
   // Preferência (rodada atual, entradas vivas no início da rodada)
@@ -167,10 +183,10 @@ function render({P,J,demo}){
     const nm=t=>cnt[t]?`<b>${esc(short(t))}</b>`:esc(short(t));
     let r="";
     if(j.Resultado){const sobe=[j.Mandante,j.Visitante].filter(t=>cnt[t]&&res[atual][t]==="Venceu").reduce((s,t)=>s+cnt[t],0);
-      const cai=j.n-sobe;r=`<span class="r ${cai?"bad":"ok"}">${cai?`Encerrado · ${cai} ${cai>1?"caíram":"caiu"}`:`Encerrado · todos seguem vivos`}</span>`}
+      const cai=j.n-sobe;r=`<span class="r ${cai?"bad":"ok"}">${cai?`Encerrado · ${cai} ${cai>1?"caíram":"caiu"}`:`Encerrado · ninguém caiu`}</span>`}
     else if(j.ko&&now-j.ko>8100000)r=`<span class="r" style="color:var(--lav)">Aguardando resultado</span>`;
     else if(j.ko&&now>=j.ko)r=`<span class="r" style="color:var(--yel)">Em andamento</span>`;
-    sec+=`<div class="game"><div class="h">${hora}</div><div class="m">${nm(j.Mandante)} x ${nm(j.Visitante)}${r}</div><span class="badge">${j.n} ${j.n>1?"entradas":"entrada"}</span></div>`});
+    sec+=`<div class="game"><div class="h">${hora}</div><div class="m">${nm(j.Mandante)} ${j.Placar?`<span class="sc">${esc(j.Placar)}</span>`:"x"} ${nm(j.Visitante)}${r}</div><span class="badge">${j.n} ${j.n>1?"entradas":"entrada"}</span></div>`});
 
   document.getElementById("app").innerHTML=`
   <section><h2>Raio-X da competição</h2><div class="under"></div>
@@ -184,7 +200,7 @@ function render({P,J,demo}){
   <section><h2>Sobreviventes</h2><div class="under"></div>
     <div class="box"><div class="thead"><span>Entrada</span><span>Palpite R${atual}</span><span></span></div>
       ${vivos.map(e=>linha(e,false)).join("")}
-      ${mortos.length?`<div class="group">Eliminados</div>${mortos.map(e=>linha(e,true)).join("")}`:""}
+      ${mortos.map(e=>linha(e,true)).join("")}
     </div>${showPick?"":`<p class="note">Os palpites da rodada ${atual} aparecem quando o primeiro jogo começar.</p>`}</section>
   ${showPick&&jogos.length?`<section><h2>Secadores ligados</h2><div class="under"></div>${sec}</section>`:""}
   ${showPick&&pref.length?`<section><h2>Preferência dos jogadores</h2><div class="under"></div><div class="box">
