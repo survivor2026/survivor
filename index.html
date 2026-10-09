@@ -31,7 +31,8 @@ h1,h2{font-family:"Permanent Marker",Poppins,system-ui,sans-serif;font-weight:40
 h1{font-size:40px}
 h2{font-size:clamp(19px,6.2vw,28px);text-align:center;white-space:nowrap}
 .under{width:150px;height:6px;border-radius:3px;background:var(--yel);margin:8px auto 10px}
-.sub{font-weight:600;font-size:16px;color:var(--card)}
+.sub{font-weight:600;font-size:clamp(13px,4vw,16px);color:var(--card);white-space:pre}
+.sub .ini{color:var(--foot);font-weight:500}
 .updated{font-size:13px;color:var(--foot);margin-top:4px;font-weight:600}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22C55E;margin-right:6px;vertical-align:1px;animation:pulse 2s infinite}
 @keyframes pulse{50%{opacity:.35}}
@@ -50,7 +51,6 @@ section{margin-top:34px}
 /* Tabela de sobreviventes */
 .row{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;align-items:center;gap:7px;padding:9px 9px 9px 11px;border-radius:8px;font-weight:700;font-size:clamp(12.5px,3.8vw,15px);line-height:1.3}
 .row .e,.row .e small,.row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row:nth-child(odd){background:var(--alt)}
 .row .e{color:#F0EAFF}
 .row .e small{display:block;font-weight:400;font-size:.74em;color:var(--lav);opacity:.85}
 .row .t{color:#fff;border-left:1px solid #BEB4D2;padding-left:8px;min-width:0}
@@ -62,8 +62,81 @@ section{margin-top:34px}
 .pill.rd{background:transparent;color:var(--lav);border:1px solid var(--lav);padding:2px 5px}
 .pill.rd.up{padding:3px 6px;border:0;background:var(--green);border-color:var(--green);color:#14532D}
 .group.first{padding-top:6px}
-.row.out{opacity:.55}
-.row.out .t{text-decoration:line-through;text-decoration-color:var(--red)}
+.ent>summary{list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ent>summary::-webkit-details-marker{display:none}
+.ent.z>summary{background:var(--alt)}
+.ent[open]>summary{background:#5B2AA6;border-radius:8px 8px 0 0}
+.ent.out>summary{opacity:.55}
+.ent.out[open]>summary{opacity:.8}
+.ent.out .row .t{text-decoration:line-through;text-decoration-color:var(--red)}
+.ent.out .row .t.nost{text-decoration:none}
+.ent.out>.row{grid-template-columns:minmax(0,1fr) auto auto}
+.ent.out .row .t{font-size:.9em;max-width:7.8em}
+.pill.elim{padding:2px 5px}
+.row .t.sent{color:var(--green);font-weight:700}
+.row .t.pend{color:var(--lav);font-weight:600;opacity:.8}
+.hist{background:#28094F;border-radius:0 0 8px 8px;padding:8px 10px 10px 11px;margin-bottom:4px;font-size:clamp(12px,3.5vw,14px)}
+.hl{display:grid;grid-template-columns:2.3em auto auto minmax(0,1fr) 1.2em;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(226,214,252,.12)}
+.hl.hx{grid-template-columns:2.3em auto minmax(0,1fr)}
+.hl.hx .hm{text-align:right}
+.hl .vs{color:var(--lav);text-align:center;padding:0 4px}
+.hl>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hr{color:var(--yel);font-weight:700}
+.ht{color:#fff;font-weight:700}
+.ht.sent{color:var(--green)}.ht.pend{color:var(--lav);font-weight:600}
+.hm{color:var(--lav);font-weight:600}
+.hl .sc{background:#fff;color:var(--deep);font-weight:700;border-radius:5px;padding:0 7px}
+.hs{font-weight:700;text-align:center;font-size:1.05em}
+.hs.ok{color:var(--green)}.hs.bad{color:var(--red)}.hs.wait{color:var(--lav)}
+.bar .hs{margin-left:8px}
+.repw{color:var(--red);font-size:.88em;font-weight:700;padding:2px 0 4px 2.9em}
+.used{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding-top:8px}
+.used .uk{color:var(--lav);font-weight:600;margin-right:2px}
+.chip{background:rgba(226,214,252,.16);color:#fff;font-weight:700;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.used .none{color:var(--lav);opacity:.8}
+.used .disp{margin-left:auto;color:var(--green);font-weight:700;white-space:nowrap}
+.hint{font-size:13px;color:var(--foot);text-align:center;font-weight:600;margin:-2px 0 -4px}
+.cap{font-weight:700;font-size:14px;color:var(--card);text-align:center;margin:-2px 0 4px}
+.past{margin-top:12px}
+.past>summary{list-style:none;cursor:pointer;background:#E4DEEE;color:var(--deep);border-radius:12px;padding:12px 16px;font-weight:700;font-size:16px;display:flex;align-items:baseline;gap:10px}
+.past>summary::-webkit-details-marker{display:none}
+.past>summary small{font-weight:600;color:var(--foot);font-size:13px;flex:1}
+.past>summary::after{content:"+";font-size:20px;line-height:1;color:var(--card)}
+.past[open]>summary::after{content:"–"}
+.past .inner{padding-top:2px}
+.past .day{margin-top:12px}
+.prog{padding:16px 16px 18px;text-align:center}
+.prog .pv{font-weight:700;font-size:18px;color:var(--lav)}
+.prog .big{font-size:40px;color:var(--yel);line-height:1}
+.prog .pk{font-weight:600;font-size:14px;color:var(--lav);margin:2px 0 10px}
+.btn{display:block;width:100%;margin-top:14px;background:var(--yel);color:var(--deep);border:0;border-radius:14px;padding:14px;font:700 16px Poppins,system-ui,sans-serif;cursor:pointer}
+.btn:focus-visible,.x:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
+body.lock{overflow:hidden}
+.ov{position:fixed;inset:0;z-index:10;background:var(--bg);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+.ov[hidden]{display:none}
+.ovh{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:560px;width:100%;margin:0 auto;padding:16px 16px 6px}
+.ovh h2{text-align:left}
+.x{background:var(--card);color:#fff;border:0;border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer;flex:none}
+.ovb{flex:1;overflow:auto;max-width:560px;width:100%;margin:0 auto;padding:0 16px 24px}
+.leg{display:flex;gap:8px;margin:4px 0 10px}
+.leg .k{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px}
+.tw{background:var(--card);border-radius:16px;overflow:auto;max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px)}
+.tw table{border-collapse:separate;border-spacing:0;font-size:13.5px;min-width:100%}
+.tw th,.tw td{white-space:nowrap;padding:9px 10px;text-align:left}
+.tw thead th{position:sticky;top:0;z-index:2;background:#2A0A55;color:var(--lav);font-size:12px;font-weight:700}
+.tw thead th.en{z-index:3}
+.tw th.en{position:sticky;left:0;z-index:1;background:var(--card);color:#F0EAFF;font-weight:700;min-width:8.5em;border-right:1px solid rgba(226,214,252,.25)}
+.tw tr.z th.en,.tw tr.z td{background:var(--alt)}
+.tw td.c{color:#fff;font-weight:700;min-width:6.4em}
+.tw tr.out th.en{color:rgba(240,234,255,.55)}
+.tw td.c i{font-style:normal;display:inline-block;width:1.2em}
+.c.ok{color:var(--green)}.c.ok i{color:var(--green)}.c.bad i{color:var(--red)}.c.wait i{color:var(--lav)}
+.k.ok{color:#14532D}.k.ok{background:rgba(134,239,172,.2);color:#14532D;background:var(--green)}
+.c.bad{color:var(--red)}.k.bad{background:var(--red);color:#5A0E0E}
+.c.wait{color:#fff}.k.wait{background:#fff;color:var(--deep)}
+.c.sent{color:var(--green);font-weight:600}.c.pend{color:var(--lav);font-weight:600;opacity:.7}
+.c.no{background:transparent}
+.empty{color:var(--lav);text-align:center;padding:14px;font-weight:600}
 .thead{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;gap:7px;padding:4px 9px 8px 11px;font-size:clamp(12.5px,3.8vw,15px);font-weight:700;color:var(--lav)}
 .thead span{font-size:.8em}
 @media (max-width:375px){main{padding-left:10px;padding-right:10px}.box{padding:8px 4px}}
@@ -102,6 +175,10 @@ footer{text-align:center;font-size:13px;color:var(--foot);margin-top:36px;font-w
   <p class="updated" id="upd"></p>
 </header>
 <div id="app"></div>
+<div id="tab" class="ov" role="dialog" aria-modal="true" aria-labelledby="tabt" hidden>
+  <div class="ovh"><h2 id="tabt">Tabela de escolhas</h2><button class="x" type="button" onclick="fecharTab()" aria-label="Fechar">✕</button></div>
+  <div class="ovb"></div>
+</div>
 <footer>Atualiza sozinho a cada 2 minutos</footer>
 </main>
 <script>
@@ -129,64 +206,143 @@ async function load(){
   const demo=CSV_PARTICIPANTES.startsWith("COLE");
   const get=async u=>{const r=await fetch(u+(u.includes("?")?"&":"?")+"t="+Date.now());if(!r.ok)throw new Error("HTTP "+r.status);return r.text()};
   const [pt,jt]=demo?[DEMO.p,DEMO.j]:await Promise.all([get(CSV_PARTICIPANTES),get(CSV_JOGOS)]);
-  return {P:parseCSV(pt),J:parseCSV(jt).map(j=>({...j,Rodada:+j.Rodada,ko:kickoff(j.DataHora)})),demo};
+  return {P:parseCSV(pt),J:parseCSV(jt).map(j=>({...j,Rodada:+j.Rodada,ko:kickoff(j.DataHora)})),demo,now:demo&&DEMO.now?new Date(DEMO.now):new Date()};
 }
 
-function render({P,J,demo}){
-  const now=new Date();
-  const rodadas=[...new Set(J.map(j=>j.Rodada))].sort((a,b)=>a-b);
-  const start=r=>Math.min(...J.filter(j=>j.Rodada===r&&j.ko).map(j=>+j.ko));
-  // rodada atual = última que já começou (palpites só aparecem depois do 1º jogo da rodada)
-  const iniciadas=rodadas.filter(r=>start(r)<=+now);
-  const atual=iniciadas.length?iniciadas[iniciadas.length-1]:rodadas[0];
-  const visivel=r=>iniciadas.includes(r);
-  // resultado por time em cada rodada
-  const res={};
-  J.forEach(j=>{if(!j.Resultado)return;(res[j.Rodada]??={});const inv={Venceu:"Perdeu",Perdeu:"Venceu",Empatou:"Empatou"};res[j.Rodada][j.Mandante]=j.Resultado;res[j.Rodada][j.Visitante]=inv[j.Resultado]});
-  const pick=(p,r)=>{const v=p["R"+r];return v&&v!=="x"?v:""};
+const OPEN=new Set();
+document.addEventListener("toggle",ev=>{const k=ev.target&&ev.target.dataset&&ev.target.dataset.k;if(!k)return;ev.target.open?OPEN.add(k):OPEN.delete(k)},true);
+const op=k=>OPEN.has(k)?" open":"";
+const fmtDia=d=>`${DIAS[d.getDay()]} ${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}`;
+const fmtHora=d=>`${d.getHours()}h${String(d.getMinutes()).padStart(2,"0")}`;
+const TOTAL_TIMES=20;
+
+function render({P,J,demo,now}){
+  const rodadas=[...new Set(J.map(j=>j.Rodada))].filter(Boolean).sort((a,b)=>a-b);
+  const jr=r=>J.filter(j=>j.Rodada===r).sort((a,b)=>(a.ko||0)-(b.ko||0));
+  const start=r=>{const k=jr(r).filter(j=>j.ko).map(j=>+j.ko);return k.length?Math.min(...k):Infinity};
+  const started=r=>start(r)<=+now;
+  const done=r=>jr(r).length>0&&jr(r).every(j=>j.Resultado);
+  // rodada atual = primeira ainda não encerrada (ou a mais recente que já começou)
+  let atual=rodadas.find(r=>!done(r))??rodadas[rodadas.length-1];
+  rodadas.forEach(r=>{if(started(r)&&r>atual)atual=r});
+  const inv={Venceu:"Perdeu",Perdeu:"Venceu",Empatou:"Empatou"};
+  const res={},gm={};
+  J.forEach(j=>{(gm[j.Rodada]??={});gm[j.Rodada][j.Mandante]=j;gm[j.Rodada][j.Visitante]=j;
+    if(!j.Resultado)return;(res[j.Rodada]??={});res[j.Rodada][j.Mandante]=j.Resultado;res[j.Rodada][j.Visitante]=inv[j.Resultado]});
+  const pick=(p,r)=>{const v=p["R"+r];return v&&v!=="x"&&norm(v)!=="sem palpite"?v:""};
+  const quandoCurto=r=>{const k=start(r);if(!isFinite(k))return"";const d=new Date(k);return `revela ${DIAS[d.getDay()].toLowerCase()} ${fmtHora(d)}`};
+  const quando=r=>{const k=start(r);if(!isFinite(k))return"";const d=new Date(k);return `${fmtDia(d).toLowerCase()} às ${fmtHora(d)}`};
+
+  // histórico de cada entrada, rodada a rodada
   const entries=P.map(p=>{
-    let elimR=null,elimT=null;
-    for(const r of rodadas){const t=pick(p,r);const x=res[r]?.[t];if(t&&(x==="Empatou"||x==="Perdeu")){elimR=r;elimT=t;break}}
-    let reach=rodadas[0];
-    for(const r of rodadas){const t=pick(p,r);if(t&&res[r]?.[t]==="Venceu")reach=r+1;else{reach=r;break}}
-    return {...p,vivo:p.Status!=="Eliminado",elimR,elimT,reach};
+    const hist=[],used=[];let reach=rodadas[0],elimR=null,elimT="";
+    for(const r of rodadas){
+      if(r>atual)break;
+      const t=pick(p,r);
+      if(!started(r)){hist.push({r,hidden:true,sent:!!t});reach=r;break}
+      if(!t){hist.push({r,miss:true});reach=r;elimR=r;elimT="";break}
+      const x=res[r]?.[t];
+      hist.push({r,t,x,j:gm[r]?.[t],rep:used.includes(t)});used.push(t);
+      if(x==="Venceu"){reach=r+1;continue}
+      reach=r;if(x==="Empatou"||x==="Perdeu"){elimR=r;elimT=t}
+      break;
+    }
+    if(elimR==null&&p.Status==="Eliminado"){elimR=reach;elimT=pick(p,reach)}
+    return {...p,hist,used,reach,elimR,elimT,vivo:elimR==null};
   });
   const cmp=(a,b)=>norm(a.Entrada).localeCompare(norm(b.Entrada),"pt-BR",{numeric:true});
-  const vivos=entries.filter(e=>e.vivo).sort((a,b)=>(b.reach-a.reach)||cmp(a,b)), mortos=entries.filter(e=>!e.vivo).sort((a,b)=>(b.elimR-a.elimR)||cmp(a,b));
+  const vivos=entries.filter(e=>e.vivo).sort((a,b)=>(b.reach-a.reach)||cmp(a,b));
+  const mortos=entries.filter(e=>!e.vivo).sort((a,b)=>(b.elimR-a.elimR)||cmp(a,b));
   const jogadores=new Set(entries.map(e=>e.Participante)).size;
+  const aberta=started(atual);
 
   document.getElementById("titulo").textContent="Rodada "+atual;
-  document.getElementById("sub").textContent=`${entries.length} entradas   ·   Prêmio ${brl(entries.length*VALOR_POR_ENTRADA)}`;
-  document.getElementById("upd").innerHTML=demo?"Prévia com dados de exemplo":`<span class="dot"></span>Atualizado às ${now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}`;
+  document.getElementById("sub").innerHTML=`${entries.length} entradas  ·  Prêmio ${brl(entries.length*VALOR_POR_ENTRADA)}<span class="ini">  ·  Início R${rodadas[0]}</span>`;
+  document.getElementById("upd").innerHTML=demo?"Prévia com dados de exemplo":`<span class="dot"></span>Atualizado às ${new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}`;
 
-  const showPick=visivel(atual);
-  const linha=(e,out)=>{
-    const t=out?e.elimT:(showPick?pick(e,atual):"");
+  // ---------- Sobreviventes ----------
+  const histHTML=e=>{
+    const ls=e.hist.map(h=>{
+      if(h.hidden)return `<div class="hl hx"><span class="hr">R${h.r}</span><span class="ht ${h.sent?"sent":"pend"}">${h.sent?"Palpite enviado":"Aguardando palpite"}</span><span class="hm">${quandoCurto(h.r)}</span></div>`;
+      if(h.miss)return `<div class="hl hx"><span class="hr">R${h.r}</span><span class="ht pend">Sem palpite</span><span class="hm">eliminada</span></div>`;
+      const j=h.j;let sc="",opp="";
+      if(j){const home=j.Mandante===h.t;opp=home?j.Visitante:j.Mandante;
+        const m=(j.Placar||"").match(/(\d+)\s*x\s*(\d+)/);if(m)sc=home?`${m[1]} x ${m[2]}`:`${m[2]} x ${m[1]}`}
+      const st=h.x==="Venceu"?`<span class="hs ok" title="Venceu">✓</span>`:(h.x?`<span class="hs bad" title="${h.x}">✗</span>`:`<span class="hs wait" title="Aguardando">•</span>`);
+      return `<div class="hl"><span class="hr">R${h.r}</span><span class="ht">${esc(short(h.t))}</span>${sc?`<span class="sc">${sc}</span>`:`<span class="vs">x</span>`}<span class="hm">${opp?esc(short(opp)):""}</span>${st}</div>${h.rep?`<div class="repw">Time repetido: ${esc(short(h.t))} já tinha sido usado</div>`:""}`});
+    const disp=TOTAL_TIMES-new Set(e.used).size;
+    return `<div class="hist">${ls.join("")}<div class="used"><span class="uk">Já usou</span>${e.used.length?[...new Set(e.used)].map(t=>`<span class="chip">${esc(short(t))}</span>`).join(""):`<span class="none">nenhum time ainda</span>`}<span class="disp">${disp} disponíveis</span></div></div>`};
+  const linha=(e,out,z)=>{
+    let tcell;
+    if(out)tcell=e.elimT?`<div class="t">${esc(short(e.elimT))}</div>`:`<div class="t pend nost">Sem palpite</div>`;
+    else{const c=e.hist.find(h=>h.r===atual);
+      if(!c)tcell=`<div class="t">—</div>`;
+      else if(c.hidden)tcell=`<div class="t ${c.sent?"sent":"pend"}">${c.sent?"Enviado":"Pendente"}</div>`;
+      else if(c.miss)tcell=`<div class="t pend">Sem palpite</div>`;
+      else tcell=`<div class="t">${esc(short(c.t))}</div>`}
     const adv=!out&&e.reach>atual;
     const tag=out?`<span class="tags"><span class="pill elim">Eliminado</span><span class="pill rd dead">R${e.elimR??"?"}</span></span>`
       :`<span class="tags"><span class="pill vivo">Vivo</span><span class="pill rd${adv?" up":""}">R${e.reach}</span></span>`;
-    return `<div class="row${out?" out":""}"><div class="e">${esc(e.Entrada)}<small>${esc(e.Participante)}</small></div><div class="t">${esc(t?short(t):"—")}</div>${tag}</div>`};
+    const k="e:"+e.Entrada;
+    return `<details class="ent${out?" out":""}${z?" z":""}" data-k="${esc(k)}"${op(k)}><summary class="row"><div class="e">${esc(e.Entrada)}<small>${esc(e.Participante)}</small></div>${tcell}${tag}</summary>${histHTML(e)}</details>`};
+  const lista=[...vivos.map(e=>[e,false]),...mortos.map(e=>[e,true])].map(([e,o],i)=>linha(e,o,i%2===0)).join("");
 
-  // Preferência (rodada atual, entradas vivas no início da rodada)
-  const cnt={};let tot=0;
-  if(showPick)entries.forEach(e=>{const t=pick(e,atual);if(t&&(!e.elimR||e.elimR>=atual)){cnt[t]=(cnt[t]||0)+1;tot++}});
-  const pref=Object.entries(cnt).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
-  const mx=pref.length?pref[0][1]:1;
+  // ---------- contagem de palpites por rodada ----------
+  const cntR=r=>{const c={};entries.forEach(e=>{const h=e.hist.find(h=>h.r===r&&h.t);if(h)c[h.t]=(c[h.t]||0)+1});return c};
+  const caiu=r=>entries.filter(e=>e.elimR===r).length;
 
-  // Secadores
-  const jogos=J.filter(j=>j.Rodada===atual).map(j=>({...j,n:(cnt[j.Mandante]||0)+(cnt[j.Visitante]||0)})).filter(j=>j.n>0).sort((a,b)=>a.ko-b.ko);
-  let lastDay="",sec="";
-  jogos.forEach(j=>{
-    const d=j.ko?`${DIAS[j.ko.getDay()]} ${String(j.ko.getDate()).padStart(2,"0")}/${String(j.ko.getMonth()+1).padStart(2,"0")}`:"";
-    if(d!==lastDay){sec+=`<div class="day">${d}</div>`;lastDay=d}
-    const hora=j.ko?`${j.ko.getHours()}h${String(j.ko.getMinutes()).padStart(2,"0")}`:"";
-    const nm=t=>cnt[t]?`<b>${esc(short(t))}</b>`:esc(short(t));
-    let r="";
-    if(j.Resultado){const sobe=[j.Mandante,j.Visitante].filter(t=>cnt[t]&&res[atual][t]==="Venceu").reduce((s,t)=>s+cnt[t],0);
-      const cai=j.n-sobe;r=`<span class="r ${cai?"bad":"ok"}">${cai?`Encerrado · ${cai} ${cai>1?"caíram":"caiu"}`:`Encerrado · ninguém caiu`}</span>`}
-    else if(j.ko&&now-j.ko>8100000)r=`<span class="r" style="color:var(--lav)">Aguardando resultado</span>`;
-    else if(j.ko&&now>=j.ko)r=`<span class="r" style="color:var(--yel)">Em andamento</span>`;
-    sec+=`<div class="game"><div class="h">${hora}</div><div class="m">${nm(j.Mandante)} ${j.Placar?`<span class="sc">${esc(j.Placar)}</span>`:"x"} ${nm(j.Visitante)}${r}</div><span class="badge">${j.n} ${j.n>1?"entradas":"entrada"}</span></div>`});
+  // ---------- Secadores ----------
+  const gameCard=(j,c,r,badge)=>{
+    const n=(c[j.Mandante]||0)+(c[j.Visitante]||0);
+    const hora=j.ko?fmtHora(j.ko):"";
+    const nm=t=>c[t]?`<b>${esc(short(t))}</b>`:esc(short(t));
+    let st="";
+    if(j.Resultado){if(n){const sobe=[j.Mandante,j.Visitante].filter(t=>c[t]&&res[r]?.[t]==="Venceu").reduce((s,t)=>s+c[t],0);
+      const cai=n-sobe;st=`<span class="r ${cai?"bad":"ok"}">${cai?`Encerrado · ${cai} ${cai>1?"caíram":"caiu"}`:`Encerrado · ninguém caiu`}</span>`}
+      else st=`<span class="r" style="color:var(--lav)">Encerrado</span>`}
+    else if(j.ko&&now-j.ko>8100000)st=`<span class="r" style="color:var(--lav)">Aguardando resultado</span>`;
+    else if(j.ko&&now>=j.ko)st=`<span class="r" style="color:var(--yel)">Em andamento</span>`;
+    return `<div class="game"><div class="h">${hora}</div><div class="m">${nm(j.Mandante)} ${j.Placar?`<span class="sc">${esc(j.Placar)}</span>`:"x"} ${nm(j.Visitante)}${st}</div>${badge&&n?`<span class="badge">${n} ${n>1?"entradas":"entrada"}</span>`:"<span></span>"}</div>`};
+  const gamesList=(r,onlyPicked,badge)=>{
+    const c=cntR(r);let gs=jr(r);
+    if(onlyPicked){const f=gs.filter(j=>(c[j.Mandante]||0)+(c[j.Visitante]||0)>0);if(f.length)gs=f}
+    let last="",h="";
+    gs.forEach(j=>{const d=j.ko?fmtDia(j.ko):"";if(d!==last){h+=`<div class="day">${d}</div>`;last=d}h+=gameCard(j,c,r,badge)});
+    return h};
+  const passadas=rodadas.filter(r=>r<atual).reverse();
+  const pastSec=passadas.map(r=>{const k="s:"+r,n=caiu(r);
+    return `<details class="past" data-k="${k}"${op(k)}><summary>Rodada ${r}<small>encerrada · ${n?`${n} ${n>1?"caíram":"caiu"}`:"ninguém caiu"}</small></summary><div class="inner">${gamesList(r,true,true)}</div></details>`}).join("");
+  const secAtual=aberta
+    ?`<p class="cap">Rodada ${atual} · em andamento</p>${gamesList(atual,true,true)}`
+    :`<p class="cap">Rodada ${atual} · começa ${quando(atual)}</p>${gamesList(atual,false,false)}<p class="note">Quantas entradas dependem de cada jogo aparece quando a rodada começar.</p>`;
+
+  // ---------- Preferência ----------
+  const bars=(r,marks)=>{const c=cntR(r);const pr=Object.entries(c).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+    const tot=pr.reduce((s,x)=>s+x[1],0),mx=pr.length?pr[0][1]:1;
+    return pr.map(([t,n])=>{const x=res[r]?.[t];const mk=marks&&x?(x==="Venceu"?`<span class="hs ok">✓</span>`:`<span class="hs bad">✗</span>`):"";
+      return `<div class="bar"><div class="top"><span>${esc(short(t))}${mk}</span><span class="n"><small>${Math.round(100*n/tot)}%</small>${n}</span></div><div class="track"><div class="fill" style="width:${Math.max(4,100*n/mx)}%"></div></div></div>`}).join("")};
+  const enviados=vivos.filter(e=>e.hist.find(h=>h.r===atual&&(h.sent||h.t))).length;
+  const prefAtual=aberta
+    ?`<p class="cap">Rodada ${atual}</p><div class="box">${bars(atual,true)||`<p class="empty">Nenhum palpite registrado na rodada ${atual}.</p>`}</div>`
+    :`<p class="cap">Rodada ${atual} · palpites aparecem ${quando(atual)}</p><div class="box prog"><div class="pv"><span class="big">${enviados}</span> de ${vivos.length}</div><div class="pk">entradas vivas já enviaram o palpite</div><div class="track"><div class="fill" style="width:${vivos.length?Math.max(2,100*enviados/vivos.length):0}%"></div></div></div>`;
+  const pastPref=passadas.map(r=>{const k="p:"+r;
+    return `<details class="past" data-k="${k}"${op(k)}><summary>Rodada ${r}<small>${Object.keys(cntR(r)).length} times escolhidos</small></summary><div class="box">${bars(r,true)}</div></details>`}).join("");
+
+  // ---------- Tabela completa ----------
+  const rodTab=rodadas.filter(r=>r<=atual);
+  const celTab=(e,r)=>{
+    const h=e.hist.find(h=>h.r===r);
+    if(!h)return `<td class="c no"></td>`;
+    if(h.hidden)return `<td class="c ${h.sent?"sent":"pend"}">${h.sent?"Enviado":"—"}</td>`;
+    if(h.miss)return `<td class="c bad"><i>✗</i>Sem palpite</td>`;
+    const cl=h.x==="Venceu"?"ok":(h.x?"bad":"wait");
+    const ic=cl==="ok"?"✓":(cl==="bad"?"✗":"•");
+    return `<td class="c ${cl}"><i>${ic}</i>${esc(short(h.t))}</td>`};
+  const ordem=[...vivos,...mortos];
+  document.querySelector("#tab .ovb").innerHTML=`<div class="leg"><span class="k ok">Venceu</span><span class="k bad">Caiu</span><span class="k wait">Aguardando</span></div>
+    <div class="tw"><table><thead><tr><th class="en">Entrada</th>${rodTab.map(r=>`<th>R${r}</th>`).join("")}</tr></thead>
+    <tbody>${ordem.map((e,i)=>`<tr class="${e.vivo?"":"out"}${i%2?"":" z"}"><th class="en">${esc(e.Entrada)}</th>${rodTab.map(r=>celTab(e,r)).join("")}</tr>`).join("")}</tbody></table></div>
+    <p class="note">Ordem igual à dos Sobreviventes. Arraste para o lado quando houver mais rodadas.</p>`;
 
   document.getElementById("app").innerHTML=`
   <section><h2>Raio-X da competição</h2><div class="under"></div>
@@ -198,15 +354,17 @@ function render({P,J,demo}){
       <div class="tile"><div class="v">${mortos.length}</div><div class="k">ELIMINADAS</div></div>
     </div></section>
   <section><h2>Sobreviventes</h2><div class="under"></div>
-    <div class="box"><div class="thead"><span>Entrada</span><span>Palpite R${atual}</span><span></span></div>
-      ${vivos.map(e=>linha(e,false)).join("")}
-      ${mortos.map(e=>linha(e,true)).join("")}
-    </div>${showPick?"":`<p class="note">Os palpites da rodada ${atual} aparecem quando o primeiro jogo começar.</p>`}</section>
-  ${showPick&&jogos.length?`<section><h2>Secadores ligados</h2><div class="under"></div>${sec}</section>`:""}
-  ${showPick&&pref.length?`<section><h2>Preferência dos jogadores</h2><div class="under"></div><div class="box">
-    ${pref.map(([t,c])=>`<div class="bar"><div class="top"><span>${esc(short(t))}</span><span class="n"><small>${Math.round(100*c/tot)}%</small>${c}</span></div><div class="track"><div class="fill" style="width:${Math.max(4,100*c/mx)}%"></div></div></div>`).join("")}
-  </div></section>`:""}`;
+    <p class="hint">Toque numa entrada para ver o histórico de palpites</p>
+    <div class="box"><div class="thead"><span>Entrada</span><span>Palpite R${atual}</span><span></span></div>${lista}</div>
+    ${aberta?"":`<p class="note">Os times da rodada ${atual} aparecem ${quando(atual)}. Até lá, mostramos só quem já enviou.</p>`}
+    <button class="btn" type="button" onclick="abrirTab()">Tabela completa com as escolhas</button></section>
+  <section><h2>Secadores ligados</h2><div class="under"></div>${secAtual}${pastSec}</section>
+  <section><h2>Preferência dos jogadores</h2><div class="under"></div>${prefAtual}${pastPref}</section>`;
 }
+
+function abrirTab(){const o=document.getElementById("tab");o.hidden=false;document.body.classList.add("lock");o.querySelector(".x").focus()}
+function fecharTab(){document.getElementById("tab").hidden=true;document.body.classList.remove("lock")}
+document.addEventListener("keydown",ev=>{if(ev.key==="Escape")fecharTab()});
 
 async function tick(){
   try{render(await load())}
