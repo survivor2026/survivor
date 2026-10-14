@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
 <style>
 /* ======= CONFIGURAÇÃO (cole aqui os links CSV publicados do Google Sheets) ======= */
 </style>
@@ -49,7 +49,7 @@ section{margin-top:34px}
 .tile .v{font-weight:700;font-size:36px;line-height:1.1}
 .tile .k{font-weight:700;font-size:13px;color:var(--lav);letter-spacing:.4px}
 /* Tabela de sobreviventes */
-.row{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;align-items:center;gap:7px;padding:9px 9px 9px 11px;border-radius:8px;font-weight:700;font-size:clamp(12.5px,3.8vw,15px);line-height:1.3}
+.row{display:grid;grid-template-columns:minmax(0,1fr) var(--tw,calc(7.2em + 9px)) var(--tg,76px);align-items:center;gap:5px;padding:9px 8px 9px 10px;border-radius:8px;font-weight:700;font-size:clamp(12.5px,3.8vw,15px);line-height:1.3}
 .row .e,.row .e small,.row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row .e{color:#F0EAFF}
 .row .e small{display:block;font-weight:400;font-size:.74em;color:var(--lav);opacity:.85}
@@ -58,6 +58,7 @@ section{margin-top:34px}
 .pill.vivo{background:var(--yel);color:var(--deep)}
 .pill.elim{background:transparent;color:var(--red);border:1px solid var(--red);padding:2px 6px}
 .tags{display:flex;gap:4px;justify-content:flex-end}
+.pill.caiu{background:transparent;color:var(--red);border:1px solid var(--red);padding:2px 6px}
 .pill.rd.dead{color:var(--red);border-color:var(--red)}
 .pill.rd{background:transparent;color:var(--lav);border:1px solid var(--lav);padding:2px 5px}
 .pill.rd.up{padding:3px 6px;border:0;background:var(--green);border-color:var(--green);color:#14532D}
@@ -70,8 +71,7 @@ section{margin-top:34px}
 .ent.out[open]>summary{opacity:.8}
 .ent.out .row .t{text-decoration:line-through;text-decoration-color:var(--red)}
 .ent.out .row .t.nost{text-decoration:none}
-.ent.out>.row{grid-template-columns:minmax(0,1fr) auto auto}
-.ent.out .row .t{font-size:.9em;max-width:7.8em}
+.ent.out .row .t{color:rgba(255,255,255,.85)}
 .pill.elim{padding:2px 5px}
 .row .t.sent{color:var(--green);font-weight:700}
 .row .t.pend{color:var(--lav);font-weight:600;opacity:.8}
@@ -137,8 +137,9 @@ body.lock{overflow:hidden}
 .c.sent{color:var(--green);font-weight:600}.c.pend{color:var(--lav);font-weight:600;opacity:.7}
 .c.no{background:transparent}
 .empty{color:var(--lav);text-align:center;padding:14px;font-weight:600}
-.thead{display:grid;grid-template-columns:minmax(0,1fr) 7em auto;gap:7px;padding:4px 9px 8px 11px;font-size:clamp(12.5px,3.8vw,15px);font-weight:700;color:var(--lav)}
+.thead{display:grid;grid-template-columns:minmax(0,1fr) var(--tw,calc(7.2em + 9px)) var(--tg,76px);gap:5px;padding:4px 8px 8px 10px;font-size:clamp(12.5px,3.8vw,15px);font-weight:700;color:var(--lav)}
 .thead span{font-size:.8em}
+.thead span:nth-child(2){padding-left:9px}
 @media (max-width:375px){main{padding-left:10px;padding-right:10px}.box{padding:8px 4px}}
 .group{font-size:13px;font-weight:700;color:var(--lav);padding:14px 12px 6px}
 /* Preferência */
@@ -162,6 +163,25 @@ body.lock{overflow:hidden}
 .badge{background:var(--yel);color:var(--deep);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;white-space:nowrap}
 .note{font-size:13px;color:var(--foot);text-align:center;margin-top:10px;font-weight:600}
 footer{text-align:center;font-size:13px;color:var(--foot);margin-top:36px;font-weight:600}
+.shr{display:flex;justify-content:flex-end;margin-top:8px}
+.shbtn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1.5px solid #CFC5DF;color:var(--card);border-radius:999px;padding:6px 12px;font:700 13px Poppins,system-ui,sans-serif;cursor:pointer}
+.shbtn svg{width:15px;height:15px}
+.shbtn:disabled{opacity:.6;cursor:wait}
+.shbtn:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
+.shotstage{position:fixed;left:-10000px;top:0}
+.shotwrap{width:430px;background:var(--bg);padding:22px 16px 18px}
+.shotwrap section{margin-top:0}
+.shh{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.shh img{width:46px;height:46px}
+.shh b{display:block;font-family:"Permanent Marker",Poppins,sans-serif;font-weight:400;font-size:21px;line-height:1.1}
+.shh span{font-size:13px;font-weight:600;color:var(--foot)}
+.shf{text-align:center;font-size:12px;font-weight:700;color:var(--foot);margin-top:14px}
+#shot .ovb{display:flex;flex-direction:column;align-items:center;gap:14px}
+#shot img{display:block;max-width:100%;max-height:calc(100dvh - 230px);border-radius:12px;box-shadow:0 6px 24px rgba(48,10,98,.18)}
+.acts{display:flex;gap:8px;width:100%}
+.acts .btn{margin-top:0;flex:1;padding:13px 8px;font-size:15px}
+.acts .btn.sec{background:transparent;border:2px solid var(--card);color:var(--card)}
+.toast{font-size:13px;font-weight:700;color:#15803D;min-height:18px;text-align:center}
 .err{background:#FFE4E4;color:#8A1C1C;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:16px;font-weight:600}
 </style>
 </head>
@@ -178,6 +198,10 @@ footer{text-align:center;font-size:13px;color:var(--foot);margin-top:36px;font-w
 <div id="tab" class="ov" role="dialog" aria-modal="true" aria-labelledby="tabt" hidden>
   <div class="ovh"><h2 id="tabt">Tabela de escolhas</h2><button class="x" type="button" onclick="fecharTab()" aria-label="Fechar">✕</button></div>
   <div class="ovb"></div>
+</div>
+<div id="shot" class="ov" role="dialog" aria-modal="true" aria-labelledby="shott" hidden>
+  <div class="ovh"><h2 id="shott">Imagem pronta</h2><button class="x" type="button" onclick="fecharShot()" aria-label="Fechar">✕</button></div>
+  <div class="ovb"><img alt="Imagem para compartilhar"><div class="acts"></div><p class="toast" aria-live="polite"></p><p class="note" style="margin-top:0">No celular, também dá para tocar e segurar a imagem para salvar ou copiar.</p></div>
 </div>
 <footer>Atualiza sozinho a cada 2 minutos</footer>
 </main>
@@ -281,7 +305,7 @@ function render({P,J,demo,now}){
       else if(c.miss)tcell=`<div class="t pend">Sem palpite</div>`;
       else tcell=`<div class="t">${esc(short(c.t))}</div>`}
     const adv=!out&&e.reach>atual;
-    const tag=out?`<span class="tags"><span class="pill elim">Eliminado</span><span class="pill rd dead">R${e.elimR??"?"}</span></span>`
+    const tag=out?`<span class="tags"><span class="pill caiu">Caiu</span><span class="pill rd dead">R${e.elimR??"?"}</span></span>`
       :`<span class="tags"><span class="pill vivo">Vivo</span><span class="pill rd${adv?" up":""}">R${e.reach}</span></span>`;
     const k="e:"+e.Entrada;
     return `<details class="ent${out?" out":""}${z?" z":""}" data-k="${esc(k)}"${op(k)}><summary class="row"><div class="e">${esc(e.Entrada)}<small>${esc(e.Participante)}</small></div>${tcell}${tag}</summary>${histHTML(e)}</details>`};
@@ -345,26 +369,94 @@ function render({P,J,demo,now}){
     <p class="note">Ordem igual à dos Sobreviventes. Arraste para o lado quando houver mais rodadas.</p>`;
 
   document.getElementById("app").innerHTML=`
-  <section><h2>Raio-X da competição</h2><div class="under"></div>
+  <section><div data-shot="raiox"><h2>Raio-X da competição</h2><div class="under"></div>
     <div class="prize"><div class="k">PRÊMIO</div><div class="v">${brl(entries.length*VALOR_POR_ENTRADA)}</div><div class="s">tudo pro campeão</div></div>
     <div class="tiles">
       <div class="tile"><div class="v">${jogadores}</div><div class="k">JOGADORES</div></div>
       <div class="tile"><div class="v">${entries.length}</div><div class="k">ENTRADAS</div></div>
       <div class="tile"><div class="v">${vivos.length}</div><div class="k">ENTRADAS VIVAS</div></div>
       <div class="tile"><div class="v">${mortos.length}</div><div class="k">ELIMINADAS</div></div>
-    </div></section>
-  <section><h2>Sobreviventes</h2><div class="under"></div>
-    <p class="hint">Toque numa entrada para ver o histórico de palpites</p>
+    </div></div><div class="shr noimg"><button class="shbtn" type="button" onclick="salvarImagem('raiox',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Salvar imagem</button></div></section>
+  <section><div data-shot="sobreviventes"><h2>Sobreviventes</h2><div class="under"></div>
+    <p class="hint noimg">Toque numa entrada para ver o histórico de palpites</p>
     <div class="box"><div class="thead"><span>Entrada</span><span>Palpite R${atual}</span><span></span></div>${lista}</div>
-    ${aberta?"":`<p class="note">Os times da rodada ${atual} aparecem ${quando(atual)}. Até lá, mostramos só quem já enviou.</p>`}
+    ${aberta?"":`<p class="note">Os times da rodada ${atual} aparecem ${quando(atual)}. Até lá, mostramos só quem já enviou.</p>`}</div><div class="shr noimg"><button class="shbtn" type="button" onclick="salvarImagem('sobreviventes',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Salvar imagem</button></div>
     <button class="btn" type="button" onclick="abrirTab()">Tabela completa com as escolhas</button></section>
-  <section><h2>Secadores ligados</h2><div class="under"></div>${secAtual}${pastSec}</section>
-  <section><h2>Preferência dos jogadores</h2><div class="under"></div>${prefAtual}${pastPref}</section>`;
+  <section><div data-shot="secadores"><h2>Secadores ligados</h2><div class="under"></div>${secAtual}</div><div class="shr noimg"><button class="shbtn" type="button" onclick="salvarImagem('secadores',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Salvar imagem</button></div>${pastSec}</section>
+  <section><div data-shot="preferencia"><h2>Preferência dos jogadores</h2><div class="under"></div>${prefAtual}</div><div class="shr noimg"><button class="shbtn" type="button" onclick="salvarImagem('preferencia',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Salvar imagem</button></div>${pastPref}</section>`;
+  window.ATUAL=atual;
+  ajustarColunas(lista);
 }
+
+// coluna de palpites com a largura exata do maior nome exibido
+let _cv;
+function largura(txt,peso,px){_cv??=document.createElement("canvas");const c=_cv.getContext("2d");c.font=`${peso} ${px}px Poppins`;return c.measureText(txt).width}
+function ajustarColunas(){
+  const app=document.getElementById("app");
+  const ts=[...app.querySelectorAll(".row .t")];if(!ts.length)return;
+  const px=parseFloat(getComputedStyle(ts[0]).fontSize)||15;
+  let mx=0;ts.forEach(t=>{mx=Math.max(mx,largura(t.textContent,t.classList.contains("pend")?600:700,px))});
+  mx=Math.max(mx,largura("Pendente",700,px));
+  let tg=0;app.querySelectorAll(".row .tags").forEach(g=>{const k=[...g.children];tg=Math.max(tg,k.reduce((s,x)=>s+x.getBoundingClientRect().width,0)+4*(k.length-1))});
+  app.style.setProperty("--tw",Math.ceil(mx+12)+"px");
+  if(tg)app.style.setProperty("--tg",Math.ceil(tg)+"px");
+}
+document.fonts&&document.fonts.ready.then(()=>ajustarColunas());
+addEventListener("resize",()=>ajustarColunas());
+
+// ---------- salvar bloco como imagem ----------
+const NOMES={raiox:"raio-x",sobreviventes:"sobreviventes",secadores:"secadores",preferencia:"preferencia"};
+let _lib,_shot=null;
+function carregarLib(){return _lib??=new Promise((ok,err)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js";s.onload=()=>ok(window.htmlToImage);s.onerror=()=>{_lib=null;err(new Error("lib"))};document.head.appendChild(s)})}
+async function salvarImagem(k,btn){
+  const txt=btn.innerHTML;btn.disabled=true;btn.lastChild.textContent="Gerando…";
+  let w,stage;
+  try{
+    const lib=await carregarLib();
+    await document.fonts.ready;
+    const src=document.querySelector(`[data-shot="${k}"]`);
+    w=document.createElement("div");w.className="shotwrap";
+    const agora=new Date();
+    w.innerHTML=`<div class="shh"><img alt="" src="${document.querySelector(".logo").src}"><div><b>Survivor Brasileirão</b><span>Rodada ${window.ATUAL} · ${fmtDia(agora)} às ${fmtHora(agora)}</span></div></div>`;
+    const c=document.createElement("section");c.appendChild(src.cloneNode(true));
+    c.querySelectorAll(".noimg").forEach(n=>n.remove());
+    c.querySelectorAll("details[open]").forEach(d=>d.removeAttribute("open"));
+    w.appendChild(c);
+    w.insertAdjacentHTML("beforeend",`<div class="shf">survivor2026.github.io/survivor</div>`);
+    w.style.setProperty("--tw",document.getElementById("app").style.getPropertyValue("--tw"));
+    w.style.setProperty("--tg",document.getElementById("app").style.getPropertyValue("--tg"));
+    stage=document.createElement("div");stage.className="shotstage";stage.appendChild(w);document.body.appendChild(stage);
+    const op={pixelRatio:2.5,backgroundColor:"#F2F0F5",cacheBust:false};
+    if(/iP(hone|ad|od)|Macintosh.*Safari/.test(navigator.userAgent)&&!/Chrome|CriOS|Android/.test(navigator.userAgent))await lib.toBlob(w,op);
+    const blob=await lib.toBlob(w,op);
+    _shot={blob,nome:`survivor_r${window.ATUAL}_${NOMES[k]}.png`};
+    abrirShot();
+  }catch(e){alertaShot("Não deu para gerar a imagem agora. Tente de novo em instantes.")}
+  finally{stage&&stage.remove();btn.disabled=false;btn.innerHTML=txt}
+}
+function alertaShot(m){const o=document.getElementById("shot");o.querySelector("img").removeAttribute("src");o.querySelector(".acts").innerHTML="";o.querySelector(".toast").textContent=m;o.hidden=false;document.body.classList.add("lock")}
+function abrirShot(){
+  const o=document.getElementById("shot"),img=o.querySelector("img");
+  if(img.src.startsWith("blob:"))URL.revokeObjectURL(img.src);
+  img.src=URL.createObjectURL(_shot.blob);
+  const file=new File([_shot.blob],_shot.nome,{type:"image/png"});
+  const podeShare=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+  const podeCopiar=!!(navigator.clipboard&&window.ClipboardItem);
+  let h="";
+  if(podeShare)h+=`<button class="btn" type="button" onclick="compartilharShot()">Compartilhar</button>`;
+  if(podeCopiar)h+=`<button class="btn${podeShare?" sec":""}" type="button" onclick="copiarShot()">Copiar</button>`;
+  h+=`<button class="btn${podeShare||podeCopiar?" sec":""}" type="button" onclick="baixarShot()">Baixar</button>`;
+  o.querySelector(".acts").innerHTML=h;o.querySelector(".toast").textContent="";
+  o.hidden=false;document.body.classList.add("lock");o.querySelector(".acts .btn").focus();
+}
+async function compartilharShot(){try{await navigator.share({files:[new File([_shot.blob],_shot.nome,{type:"image/png"})]})}catch(e){if(e.name!=="AbortError")baixarShot()}}
+async function copiarShot(){const t=document.querySelector("#shot .toast");try{await navigator.clipboard.write([new ClipboardItem({"image/png":_shot.blob})]);t.textContent="Imagem copiada. É só colar no grupo."}catch(e){t.textContent="Seu navegador não deixou copiar. Use Baixar."}}
+function baixarShot(){const a=document.createElement("a");a.href=URL.createObjectURL(_shot.blob);a.download=_shot.nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);document.querySelector("#shot .toast").textContent="Imagem salva."}
+function fecharShot(){document.getElementById("shot").hidden=true;if(document.getElementById("tab").hidden)document.body.classList.remove("lock")}
 
 function abrirTab(){const o=document.getElementById("tab");o.hidden=false;document.body.classList.add("lock");o.querySelector(".x").focus()}
 function fecharTab(){document.getElementById("tab").hidden=true;document.body.classList.remove("lock")}
-document.addEventListener("keydown",ev=>{if(ev.key==="Escape")fecharTab()});
+document.addEventListener("keydown",ev=>{if(ev.key==="Escape"){fecharShot();fecharTab()}});
 
 async function tick(){
   try{render(await load())}
