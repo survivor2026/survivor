@@ -183,7 +183,16 @@ footer{text-align:center;font-size:13px;color:var(--foot);margin-top:36px;font-w
 .acts .btn.sec{background:transparent;border:2px solid var(--card);color:var(--card)}
 .toast{font-size:13px;font-weight:700;color:#15803D;min-height:18px;text-align:center}
 img.cr{width:1.2em;height:1.2em;border-radius:50%;vertical-align:-.24em;margin-right:.32em;flex:none}
-.game .m img.cr{width:1.35em;height:1.35em;vertical-align:-.3em}
+.game .m{display:flex;align-items:center;flex-wrap:wrap;column-gap:8px;white-space:normal;overflow:visible}
+.game .m .cs{display:inline-flex;align-items:center;gap:5px;flex:none}
+.game .m .cs img.cr{margin:0;display:block}
+.game .m .cs .vx{line-height:1;display:block}
+.game .m .sep{color:var(--lav);opacity:.4;font-weight:400}
+.game .m .ns{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(12px,3.6vw,16.5px)}
+.game .m .vx{color:var(--lav);font-weight:600}
+.game .m .sc{margin:0 2px;font-size:13px;padding:0 6px;vertical-align:1px}
+.game .m .r{flex-basis:100%}
+.game .m img.cr{width:1.4em;height:1.4em;vertical-align:middle}
 .bar .top img.cr{width:1.25em;height:1.25em}
 .tw td.c img.cr{width:1.15em;height:1.15em}
 .err{background:#FFE4E4;color:#8A1C1C;border-radius:12px;padding:12px 14px;font-size:14px;margin-top:16px;font-weight:600}
@@ -382,14 +391,14 @@ function render({P,J,demo,now}){
   const gameCard=(j,c,r,badge)=>{
     const n=(c[j.Mandante]||0)+(c[j.Visitante]||0);
     const hora=j.ko?fmtHora(j.ko):"";
-    const nm=t=>cr(t)+(c[t]?`<b>${esc(short(t))}</b>`:esc(short(t)));
+    const nm=t=>c[t]?`<b>${esc(short(t))}</b>`:esc(short(t));
     let st="";
     if(j.Resultado){if(n){const sobe=[j.Mandante,j.Visitante].filter(t=>c[t]&&res[r]?.[t]==="Venceu").reduce((s,t)=>s+c[t],0);
       const cai=n-sobe;st=`<span class="r ${cai?"bad":"ok"}">${cai?`Encerrado · ${cai} ${cai>1?"caíram":"caiu"}`:`Encerrado · ninguém caiu`}</span>`}
       else st=`<span class="r" style="color:var(--lav)">Encerrado</span>`}
     else if(j.ko&&now-j.ko>8100000)st=`<span class="r" style="color:var(--lav)">Aguardando resultado</span>`;
     else if(j.ko&&now>=j.ko)st=`<span class="r" style="color:var(--yel)">Em andamento</span>`;
-    return `<div class="game"><div class="h">${hora}</div><div class="m">${nm(j.Mandante)} ${j.Placar?`<span class="sc">${esc(j.Placar)}</span>`:"x"} ${nm(j.Visitante)}${st}</div>${badge&&n?`<span class="badge">${n} ${n>1?"entradas":"entrada"}</span>`:"<span></span>"}</div>`};
+    return `<div class="game"><div class="h">${hora}</div><div class="m"><span class="cs">${cr(j.Mandante)}<span class="vx">x</span>${cr(j.Visitante)}</span><span class="sep">|</span><span class="ns">${nm(j.Mandante)} ${j.Placar?`<span class="sc">${esc(j.Placar)}</span>`:`<span class="vx">x</span>`} ${nm(j.Visitante)}</span>${st}</div>${badge&&n?`<span class="badge">${n} ${n>1?"entradas":"entrada"}</span>`:"<span></span>"}</div>`};
   const gamesList=(r,onlyPicked,badge)=>{
     const c=cntR(r);let gs=jr(r);
     if(onlyPicked){const f=gs.filter(j=>(c[j.Mandante]||0)+(c[j.Visitante]||0)>0);if(f.length)gs=f}
